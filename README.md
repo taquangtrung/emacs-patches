@@ -15,4 +15,4 @@
     end
   ```
 
-- Run `brew install emacs-mac` or `brew reinstall emacs-mac` to appy the patch and install Emacs.
+- Run `brew install emacs-mac --with-no-title-bars` or `brew reinstall emacs-mac --with-no-title-bars` to apply the patch and install Emacs.
