@@ -1,0 +1,44 @@
+diff --git a/src/xdisp.c b/src/xdisp.c
+index f6e02cd730..468dbe4807 100644
+--- a/src/xdisp.c
++++ b/src/xdisp.c
+@@ -24504,18 +24504,18 @@ maybe_produce_line_number (struct it *it)
+ 	 corresponding to the last row of the desired matrix.  */
+       ptrdiff_t max_lnum;
+ 
+-      if (NILP (Vdisplay_line_numbers_current_absolute)
+-	  && (EQ (Vdisplay_line_numbers, Qrelative)
+-	      || EQ (Vdisplay_line_numbers, Qvisual)))
+-	/* We subtract one more because the current line is always
+-	   zero in this mode.  */
+-	max_lnum = it->w->desired_matrix->nrows - 2;
+-      else if (EQ (Vdisplay_line_numbers, Qvisual))
+-	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
+-      else
+-	max_lnum = this_line + it->w->desired_matrix->nrows - 1 - it->vpos;
+-      max_lnum = max (1, max_lnum);
+-      it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
++      // if (NILP (Vdisplay_line_numbers_current_absolute)
++      // 	  && (EQ (Vdisplay_line_numbers, Qrelative)
++      // 	      || EQ (Vdisplay_line_numbers, Qvisual)))
++      // 	/* We subtract one more because the current line is always
++      // 	   zero in this mode.  */
++      // 	max_lnum = it->w->desired_matrix->nrows - 2;
++      // else if (EQ (Vdisplay_line_numbers, Qvisual))
++      // 	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
++      // else
++      // 	max_lnum = this_line + it->w->desired_matrix->nrows - 1 - it->vpos;
++      // max_lnum = max (1, max_lnum);
++      // it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
+       eassert (it->lnum_width > 0);
+     }
+   if (EQ (Vdisplay_line_numbers, Qrelative))
+@@ -24538,7 +24538,7 @@ maybe_produce_line_number (struct it *it)
+      called when no display elements were produced from the
+      following line, so the paragraph direction might be unknown.
+      Therefore we cheat and add 2 blanks, one on either side.  */
+-  pint2str (lnum_buf, it->lnum_width + 1, lnum_to_display);
++  pint2str (lnum_buf, it->lnum_width, lnum_to_display);
+   strcat (lnum_buf, " ");
+ 
+   /* Setup for producing the glyphs.  */
