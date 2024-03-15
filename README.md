@@ -11,7 +11,7 @@
   ```rb
     patch do
       url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-mac-29-remove-line-number-left-margin.diff"
-      sha256 "cfb64003bb43155d87a0a1c1885a577535bbb715f7781cef3055531dc6128bd3"
+      sha256 "b11865d0fed8df22e368e8be583ee078ec9cfc66bf20b916d1fb238512d27e35"
     end
   ```
 
