@@ -1,5 +1,5 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..deebfeb3c39 100644
+index a9eb47720d0..b715aedb5de 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
 @@ -23338,7 +23338,11 @@ append_space_for_newline (struct it *it, bool default_face_p)
@@ -7,7 +7,7 @@ index a9eb47720d0..deebfeb3c39 100644
  	      if (extra_line_spacing > 0)
  		{
 -		  it->descent += extra_line_spacing;
-+		  // TRUNG: Vertically centralize extra line spacing
++		  // TRUNG: Vertically center the current line with extra line spacing
 +		  int extra_line_spacing_ascent = extra_line_spacing / 2;
 +		  int extra_line_spacing_descent = extra_line_spacing - extra_line_spacing_ascent;
 +		  it->ascent += extra_line_spacing_ascent;
@@ -30,7 +30,7 @@ index a9eb47720d0..deebfeb3c39 100644
    if (extra_line_spacing > 0)
      {
 -      it->descent += extra_line_spacing;
-+      // TRUNG: Vertically centralize extra line spacing
++      // TRUNG: Vertically center the current line with extra line spacing
 +      int extra_line_spacing_ascent = extra_line_spacing / 2;
 +      int extra_line_spacing_descent = extra_line_spacing - extra_line_spacing_ascent;
 +      it->ascent += extra_line_spacing_ascent;

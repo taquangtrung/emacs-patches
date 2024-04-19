@@ -7,7 +7,8 @@
   ```
 
 ## Patch displaying line numbers
-- Insert this code into `emacs-mac.rb`
+
+- Insert this code into the section installing Emacs 29 `emacs-mac.rb`:
 
   ```rb
     patch do
@@ -16,13 +17,18 @@
     end
   ```
 
-## Patch displaying buffer
-- Insert this code into `emacs-mac.rb`
+## Patch displaying buffer prettier
+
+- This patch will fix the following:
+  + Remove the unnecessary left margin when displaying line numbers in buffers
+  + Vertically center lines with extra line spacing
+
+- Insert this code into the section installing Emacs 29 `emacs-mac.rb`:
 
   ```rb
     patch do
       url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-buffer-prettier.diff"
-      sha256 "82663298ea2994ce71927ff78d9ba4d98c90923f06404ff41080c5627e2081f6"
+      sha256 "7d87021b92548356b7a459d011dd33655e4de156c084835ad93c0740b612d31c"
     end
   ```
 
