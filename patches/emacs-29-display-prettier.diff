@@ -1,5 +1,5 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..1eb7437824f 100644
+index a9eb47720d0..b692ca4b426 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
 @@ -23338,7 +23338,11 @@ append_space_for_newline (struct it *it, bool default_face_p)
@@ -15,7 +15,17 @@ index a9eb47720d0..1eb7437824f 100644
  		  if (extra_line_spacing > it->max_extra_line_spacing)
  		    it->max_extra_line_spacing = extra_line_spacing;
  		}
-@@ -24507,7 +24511,8 @@ maybe_produce_line_number (struct it *it)
+@@ -24482,7 +24486,8 @@ maybe_produce_line_number (struct it *it)
+       else if (EQ (Vdisplay_line_numbers, Qvisual))
+ 	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
+       else
+-	max_lnum = this_line + it->w->desired_matrix->nrows - 1 - it->vpos;
++	// TRUNG: compute the maximum line nume more precisely.
++	max_lnum = this_line + it->w->total_lines - 1 - it->vpos;
+       max_lnum = max (1, max_lnum);
+       it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
+       eassert (it->lnum_width > 0);
+@@ -24507,7 +24512,8 @@ maybe_produce_line_number (struct it *it)
       called when no display elements were produced from the
       following line, so the paragraph direction might be unknown.
       Therefore we cheat and add 2 blanks, one on either side.  */
@@ -25,7 +35,7 @@ index a9eb47720d0..1eb7437824f 100644
    strcat (lnum_buf, " ");
  
    /* Setup for producing the glyphs.  */
-@@ -32662,7 +32667,11 @@ gui_produce_glyphs (struct it *it)
+@@ -32662,7 +32668,11 @@ gui_produce_glyphs (struct it *it)
  
    if (extra_line_spacing > 0)
      {
