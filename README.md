@@ -1,4 +1,4 @@
-# Patch Emacs MacPort
+# Patching Emacs MacPort
 
 - Run `brew edit emacs-mac` to open the Formula file of Emacs MacPort
 
@@ -6,18 +6,7 @@
   /usr/local/Homebrew/Library/Taps/railwaycat/homebrew-emacsmacport/Formula/emacs-mac.rb
   ```
 
-## Patch displaying line numbers
-
-- Insert this code into the section installing Emacs 29 `emacs-mac.rb`:
-
-  ```rb
-    patch do
-      url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-mac-29-remove-line-number-margin.diff"
-      sha256 "b11865d0fed8df22e368e8be583ee078ec9cfc66bf20b916d1fb238512d27e35"
-    end
-  ```
-
-## Patch displaying buffer prettier
+## Patch displaying buffer
 
 - This patch will fix the following:
   + Remove the unnecessary left margin when displaying line numbers in buffers
@@ -27,8 +16,8 @@
 
   ```rb
     patch do
-      url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-buffer-prettier.diff"
-      sha256 "7d87021b92548356b7a459d011dd33655e4de156c084835ad93c0740b612d31c"
+      url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-prettier.diff"
+      sha256 "7378efa4c69f0a8bebef0fc21a8aa75eacceb8b569391f5ce20433c7e897e18a"
     end
   ```
 

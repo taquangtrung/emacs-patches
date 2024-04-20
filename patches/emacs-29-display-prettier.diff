@@ -1,5 +1,5 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..b715aedb5de 100644
+index a9eb47720d0..1eb7437824f 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
 @@ -23338,7 +23338,11 @@ append_space_for_newline (struct it *it, bool default_face_p)
@@ -8,8 +8,8 @@ index a9eb47720d0..b715aedb5de 100644
  		{
 -		  it->descent += extra_line_spacing;
 +		  // TRUNG: Vertically center the current line with extra line spacing
-+		  int extra_line_spacing_ascent = extra_line_spacing / 2;
-+		  int extra_line_spacing_descent = extra_line_spacing - extra_line_spacing_ascent;
++		  int extra_line_spacing_descent = extra_line_spacing / 2;
++		  int extra_line_spacing_ascent = extra_line_spacing - extra_line_spacing_descent;
 +		  it->ascent += extra_line_spacing_ascent;
 +		  it->descent += extra_line_spacing_descent;
  		  if (extra_line_spacing > it->max_extra_line_spacing)
@@ -31,8 +31,8 @@ index a9eb47720d0..b715aedb5de 100644
      {
 -      it->descent += extra_line_spacing;
 +      // TRUNG: Vertically center the current line with extra line spacing
-+      int extra_line_spacing_ascent = extra_line_spacing / 2;
-+      int extra_line_spacing_descent = extra_line_spacing - extra_line_spacing_ascent;
++      int extra_line_spacing_descent = extra_line_spacing / 2;
++      int extra_line_spacing_ascent = extra_line_spacing - extra_line_spacing_descent;
 +      it->ascent += extra_line_spacing_ascent;
 +      it->descent += extra_line_spacing_descent;
        if (extra_line_spacing > it->max_extra_line_spacing)
