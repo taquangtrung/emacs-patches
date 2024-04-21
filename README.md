@@ -10,14 +10,16 @@
 
 - This patch will fix the following:
   + Remove the unnecessary left margin when displaying line numbers in buffers
+  + Compute the maximum line number more precisely when displaying line numbers
   + Vertically center lines with extra line spacing
+  + Draw the filled cursor to
 
 - Insert this code into the section installing Emacs 29 `emacs-mac.rb`:
 
   ```rb
     patch do
       url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-prettier.diff"
-      sha256 "eaa093a7c42196114be64ff8d0a065533b5cf18d6c42aab41a6385f254055269"
+      sha256 "38fe60f0e3da00e82b669620dc87e8a3a81ed8f3787c80c49c5c1fff864ad005"
     end
   ```
 

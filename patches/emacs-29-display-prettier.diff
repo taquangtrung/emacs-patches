@@ -1,8 +1,18 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..b692ca4b426 100644
+index a9eb47720d0..600b3dd816b 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
-@@ -23338,7 +23338,11 @@ append_space_for_newline (struct it *it, bool default_face_p)
+@@ -2592,6 +2592,9 @@ get_glyph_string_clip_rects (struct glyph_string *s, NativeRectangle *rects, int
+ 	      r.height = min (max_y - r.y, height);
+ 	    }
+ 	}
++      // TRUNG: draw the cursor to cover both line height and line spacing
++      r.y = WINDOW_TO_FRAME_PIXEL_Y (s->w, s->row->y);
++      r.height = s->f->line_height + s->row->extra_line_spacing;
+     }
+ 
+   if (s->row->clip)
+@@ -23338,7 +23341,11 @@ append_space_for_newline (struct it *it, bool default_face_p)
  		}
  	      if (extra_line_spacing > 0)
  		{
@@ -15,7 +25,7 @@ index a9eb47720d0..b692ca4b426 100644
  		  if (extra_line_spacing > it->max_extra_line_spacing)
  		    it->max_extra_line_spacing = extra_line_spacing;
  		}
-@@ -24482,7 +24486,8 @@ maybe_produce_line_number (struct it *it)
+@@ -24482,7 +24489,8 @@ maybe_produce_line_number (struct it *it)
        else if (EQ (Vdisplay_line_numbers, Qvisual))
  	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
        else
@@ -25,7 +35,7 @@ index a9eb47720d0..b692ca4b426 100644
        max_lnum = max (1, max_lnum);
        it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
        eassert (it->lnum_width > 0);
-@@ -24507,7 +24512,8 @@ maybe_produce_line_number (struct it *it)
+@@ -24507,7 +24515,8 @@ maybe_produce_line_number (struct it *it)
       called when no display elements were produced from the
       following line, so the paragraph direction might be unknown.
       Therefore we cheat and add 2 blanks, one on either side.  */
@@ -35,7 +45,7 @@ index a9eb47720d0..b692ca4b426 100644
    strcat (lnum_buf, " ");
  
    /* Setup for producing the glyphs.  */
-@@ -32662,7 +32668,11 @@ gui_produce_glyphs (struct it *it)
+@@ -32662,7 +32671,11 @@ gui_produce_glyphs (struct it *it)
  
    if (extra_line_spacing > 0)
      {
