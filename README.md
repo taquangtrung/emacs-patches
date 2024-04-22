@@ -19,7 +19,7 @@
   ```rb
     patch do
       url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-prettier.diff"
-      sha256 "38fe60f0e3da00e82b669620dc87e8a3a81ed8f3787c80c49c5c1fff864ad005"
+      sha256 "bd877ce0056794b596efc9873b3ea8de08c9479bd8b11158b7e947965507f201"
     end
   ```
 
