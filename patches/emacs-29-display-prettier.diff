@@ -1,14 +1,14 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..0bb64806ed2 100644
+index a9eb47720d0..8794bcf1f48 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
 @@ -2592,6 +2592,9 @@ get_glyph_string_clip_rects (struct glyph_string *s, NativeRectangle *rects, int
  	      r.height = min (max_y - r.y, height);
  	    }
  	}
-+      // TRUNG: draw the cursor to cover both line height and line spacing
++      // TRUNG: update the cursor rectangle with line spacing data
 +      r.y = WINDOW_TO_FRAME_PIXEL_Y (s->w, s->row->y);
-+      r.height = s->f->line_height + s->row->extra_line_spacing;
++      r.height = r.height + s->row->extra_line_spacing;
      }
  
    if (s->row->clip)
@@ -16,8 +16,8 @@ index a9eb47720d0..0bb64806ed2 100644
  	  y = y0;
  	}
      }
-+  // TRUNG: take extra line spacing into account when computing the cursor's height
-+  h = max (h, FRAME_LINE_HEIGHT (f) + row->extra_line_spacing);
++  // TRUNG: update the correct height for the hollow and bar cursor types.
++  h = max (h, row->height);
  
    *xp = WINDOW_TEXT_TO_FRAME_PIXEL_X (w, x);
    *yp = WINDOW_TO_FRAME_PIXEL_Y (w, y);
