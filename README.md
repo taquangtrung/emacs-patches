@@ -23,6 +23,14 @@
     end
   ```
 
-# Install Emacs with patches
+## Install Emacs with patches
 
 - Run `brew install emacs-mac --with-no-title-bars` or `brew reinstall emacs-mac --with-no-title-bars` to apply the patch and install Emacs.
+
+# Patch the original Emacs source code
+
+- Clone Emacs at `git://git.savannah.gnu.org/emacs.git`
+
+- Checkout the branch corresponding with the patch: `emacs-29`
+
+- Run `git apply emacs-29-display-prettier.diff`
