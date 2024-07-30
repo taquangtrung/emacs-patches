@@ -1,5 +1,5 @@
 diff --git a/src/xdisp.c b/src/xdisp.c
-index a9eb47720d0..8c9a31f5385 100644
+index 1b198df4076..c7d62648633 100644
 --- a/src/xdisp.c
 +++ b/src/xdisp.c
 @@ -2592,6 +2592,9 @@ get_glyph_string_clip_rects (struct glyph_string *s, NativeRectangle *rects, int
@@ -41,7 +41,7 @@ index a9eb47720d0..8c9a31f5385 100644
  		  if (extra_line_spacing > it->max_extra_line_spacing)
  		    it->max_extra_line_spacing = extra_line_spacing;
  		}
-@@ -24482,7 +24498,8 @@ maybe_produce_line_number (struct it *it)
+@@ -24484,7 +24500,8 @@ maybe_produce_line_number (struct it *it)
        else if (EQ (Vdisplay_line_numbers, Qvisual))
  	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
        else
@@ -51,7 +51,7 @@ index a9eb47720d0..8c9a31f5385 100644
        max_lnum = max (1, max_lnum);
        it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
        eassert (it->lnum_width > 0);
-@@ -24507,7 +24524,8 @@ maybe_produce_line_number (struct it *it)
+@@ -24509,7 +24526,8 @@ maybe_produce_line_number (struct it *it)
       called when no display elements were produced from the
       following line, so the paragraph direction might be unknown.
       Therefore we cheat and add 2 blanks, one on either side.  */
@@ -61,7 +61,7 @@ index a9eb47720d0..8c9a31f5385 100644
    strcat (lnum_buf, " ");
  
    /* Setup for producing the glyphs.  */
-@@ -32662,7 +32680,18 @@ gui_produce_glyphs (struct it *it)
+@@ -32664,7 +32682,18 @@ gui_produce_glyphs (struct it *it)
  
    if (extra_line_spacing > 0)
      {
@@ -81,3 +81,18 @@ index a9eb47720d0..8c9a31f5385 100644
        if (extra_line_spacing > it->max_extra_line_spacing)
  	it->max_extra_line_spacing = extra_line_spacing;
      }
+diff --git a/src/xwidget.c b/src/xwidget.c
+index 58910459142..89e0be591eb 100644
+--- a/src/xwidget.c
++++ b/src/xwidget.c
+@@ -376,6 +376,10 @@ DEFUN ("make-xwidget",
+ 	      xw->widget_osr = webkit_web_view_new_with_related_view (related_view);
+ 	    }
+ 
++	  // TRUNG: Enable preferring dark mode
++	  g_object_set(gtk_settings_get_default(),
++		       "gtk-application-prefer-dark-theme", TRUE, NULL);
++
+ 	  /* Enable the developer extras.  */
+ 	  settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (xw->widget_osr));
+ 	  g_object_set (G_OBJECT (settings), "enable-developer-extras", TRUE, NULL);

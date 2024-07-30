@@ -18,7 +18,7 @@
 
   ```rb
     patch do
-      url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-display-prettier.diff"
+      url "https://raw.githubusercontent.com/taquangtrung/emacs-patches/main/patches/emacs-29-prettier.diff"
       sha256 "3344645138c9515d34d88363157d810e1d2d1b7ea321bc0c3d5ada87bf7d9892"
     end
   ```
@@ -33,4 +33,4 @@
 
 - Checkout the branch corresponding with the patch: `emacs-29`
 
-- Run `git apply emacs-29-display-prettier.diff`
+- Run `git apply emacs-29-prettier.diff`
