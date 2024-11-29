@@ -1,0 +1,39 @@
+diff --git a/src/xdisp.c b/src/xdisp.c
+index 1b198df..038b081 100644
+--- a/src/xdisp.c
++++ b/src/xdisp.c
+@@ -24484,7 +24484,8 @@ maybe_produce_line_number (struct it *it)
+       else if (EQ (Vdisplay_line_numbers, Qvisual))
+ 	max_lnum = it->pt_lnum + it->w->desired_matrix->nrows - 1;
+       else
+-	max_lnum = this_line + it->w->desired_matrix->nrows - 1 - it->vpos;
++	// TRUNG: compute the maximum line nume more precisely.
++	max_lnum = this_line + it->w->total_lines - 1 - it->vpos;
+       max_lnum = max (1, max_lnum);
+       it->lnum_width = max (it->lnum_width, log10 (max_lnum) + 1);
+       eassert (it->lnum_width > 0);
+@@ -24509,7 +24510,8 @@ maybe_produce_line_number (struct it *it)
+      called when no display elements were produced from the
+      following line, so the paragraph direction might be unknown.
+      Therefore we cheat and add 2 blanks, one on either side.  */
+-  pint2str (lnum_buf, it->lnum_width + 1, lnum_to_display);
++  // TRUNG: remove the left margin when displaying line numbers
++  pint2str (lnum_buf, it->lnum_width, lnum_to_display);
+   strcat (lnum_buf, " ");
+ 
+   /* Setup for producing the glyphs.  */
+diff --git a/src/xwidget.c b/src/xwidget.c
+index 5891045..89e0be5 100644
+--- a/src/xwidget.c
++++ b/src/xwidget.c
+@@ -376,6 +376,10 @@ fails.  */)
+ 	      xw->widget_osr = webkit_web_view_new_with_related_view (related_view);
+ 	    }
+ 
++	  // TRUNG: Enable preferring dark mode
++	  g_object_set(gtk_settings_get_default(),
++		       "gtk-application-prefer-dark-theme", TRUE, NULL);
++
+ 	  /* Enable the developer extras.  */
+ 	  settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (xw->widget_osr));
+ 	  g_object_set (G_OBJECT (settings), "enable-developer-extras", TRUE, NULL);
